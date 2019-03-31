@@ -1,4 +1,4 @@
-package com.lh.list;
+package com.lh.list.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +33,7 @@ public class Swagger2 {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Java List 常规用法演示")
-                .description("包括：group/having/sort/left join/inner join等")
+                .description("包括：group/having/sort/left join/inner join/分页/subList等")
                 .termsOfServiceUrl("http://www.baidu.com/")
                 .version("1.1")
                 .contact(new Contact("梁昊",null,"406544970@qq.com"))
