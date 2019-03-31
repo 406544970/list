@@ -49,7 +49,7 @@ public class UseController {
     /**
      * @return 返回列表数量
      */
-    @ApiOperation(value = "获取用户列表", notes = "哈哈哈")
+    @ApiOperation(value = "返回列表数量", notes = "返回列表数量")
     @PostMapping("/getListCount")
     public int getListCount() {
         return this.userList.size();
