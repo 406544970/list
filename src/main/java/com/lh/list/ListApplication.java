@@ -8,8 +8,7 @@ public class ListApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ListApplication.class, args);
-		System.out.println("The is Universal demo of list!");
-		System.out.println("The writer is liang hao on March 30, 2019");
+		System.out.println("http://localhost:8080/swagger-ui.html");
 	}
 
 }
