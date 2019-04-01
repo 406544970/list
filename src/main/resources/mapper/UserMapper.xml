@@ -34,13 +34,7 @@
         <include refid="Base_Column_List2"/>
         FROM user
         <where>
-            <choose>
-                <when test="id != null">
-                    AND id = #{id,jdbcType=VARCHAR}
-                </when>
-                <otherwise>
-                </otherwise>
-            </choose>
+            AND id = #{id,jdbcType=VARCHAR}
         </where>
     </select>
 
