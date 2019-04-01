@@ -2,10 +2,13 @@ package com.lh.list.controller;
 
 import com.lh.list.model.SexHaving;
 import com.lh.list.model.User;
+import com.lh.list.service.UserService;
+import com.lh.list.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +28,9 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/users")     // 通过这里配置使下面的映射都在/users下，可去除
 @Api(value = "用户控制类", description = "用户控制类")
 public class UseController {
+    @Autowired
+    UserService userService;
+
     private List<User> userList;
 
     public UseController() {
@@ -44,6 +50,34 @@ public class UseController {
     protected void finalize() throws Throwable {
         super.finalize();
         userList.clear();
+    }
+
+    /**
+     * 根据主键，查询一个User列表对象
+     * @param id 主键
+     * @return returnMap返回：一个User列表对象
+     */
+    @ApiOperation(value = "根据主键查询User单个对象", notes = "returnMap返回：一个User对象")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键", required = true, dataType = "String")
+    })
+    @PostMapping("/selectByPrimaryKeyUser")
+    public List<User> selectByPrimaryKeyUser(String id) {
+        return userService.selectByPrimaryKey(id);
+    }
+
+    /**
+     * 根据主键，查询一个User对象
+     * @param id 主键
+     * @return returnType返回：一个User对象
+     */
+    @ApiOperation(value = "根据主键查询User列表对象", notes = "returnType返回：一个User列表对象")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键", required = true, dataType = "String")
+    })
+    @PostMapping("/selectByPrimaryKeyUser2")
+    public User selectByPrimaryKeyUser2(String id) {
+        return userService.selectByPrimaryKey2(id);
     }
 
     /**
@@ -224,7 +258,7 @@ public class UseController {
      *
      * @return 姓名集合，而且去掉了重复
      */
-    @ApiOperation(value = "得到姓名列表", notes = "得到姓名列表",response = List.class)
+    @ApiOperation(value = "得到姓名列表", notes = "得到姓名列表", response = List.class)
     @PostMapping("/getUserNameList")
     public List<String> getUserNameList() {
         Map<String, List<User>> nameMap = userList.stream()

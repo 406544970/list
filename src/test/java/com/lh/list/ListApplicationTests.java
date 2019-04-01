@@ -262,4 +262,20 @@ public class ListApplicationTests {
         return userGradeList;
     }
 
+//    下面为与mybatis基本方法
+    /**
+     * 根据主键，查询一个User对象，returnMap返回
+     */
+    @Test
+    public void selectByPrimaryKeyUser(){
+        System.out.println(gson.toJson(useController.selectByPrimaryKeyUser(null)));
+    }
+    /**
+     * 根据主键，查询一个User对象，returnType返回
+     */
+    @Test
+    public void selectByPrimaryKeyUser2(){
+        System.out.println(gson.toJson(useController.selectByPrimaryKeyUser2("id2")));
+    }
+
 }
