@@ -35,7 +35,7 @@
                 AND user_name like CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
             </if>
             <if test="age != null">
-                <![CDATA[AND age > #{age,jdbcType=INTEGER}]]>
+                AND age > #{age,jdbcType=INTEGER}
             </if>
             <if test="sex != null">
                 AND sex = #{sex,jdbcType=BIT}

@@ -277,7 +277,7 @@ public class ListApplicationTests {
      */
     @Test
     public void selectByPrimaryKeyUser2() {
-        System.out.println(gson.toJson(useController.selectByPrimaryKey2("id3")));
+        System.out.println(gson.toJson(useController.selectByPrimaryKey2("id3o")));
     }
 
     @Test
