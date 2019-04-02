@@ -9,7 +9,10 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import unit.PageList;
 import unit.SortList;
 
@@ -72,17 +75,14 @@ public class UseController {
      * 主键查询获得user对象
      *
      * @param id 主键
-     * @param englishSign 是否是英文版
      * @return 根据ID，得到一个用户实体对象
      */
     @ApiOperation(value = "主键查询获得user对象", notes = "根据ID，得到一个用户实体对象")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "englishSign", value = "是否生成英文", required = true, dataType = "Boolean")
+            @ApiImplicitParam(name = "id", value = "主键", required = true, dataType = "String")
     })
     @PostMapping("/selectByPrimaryKey2")
-    public User selectByPrimaryKey2(@RequestParam(value = "id") String id
-            , @RequestParam(value = "englishSign", defaultValue = "false") Boolean englishSign) {
+    public User selectByPrimaryKey2(@RequestParam(value = "id") String id) {
 
 //      请在这里写逻辑代码
 
@@ -279,7 +279,7 @@ public class UseController {
 
     @ApiOperation(value = "查看该站点端口", notes = "以便观察负载均衡")
     @PostMapping(value = "/myPort")
-    public String myPort(){
+    public String myPort() {
         return "myPort: " + this.myPort;
     }
 
