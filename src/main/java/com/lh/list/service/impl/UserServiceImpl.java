@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    UserMapper userMapper;
+    UserMapper userDao;
     /**
      * 主键查询获得user对象
      *
@@ -27,12 +27,17 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<User> selectByPrimaryKey(String id) {
-        return userMapper.selectByPrimaryKey(id);
+        return userDao.selectByPrimaryKey(id);
     }
 
+    /**
+     * 主键查询获得user对象
+     *
+     * @param id 主键
+     * @return 根据ID，得到一个用户实体对象
+     */
     @Override
     public User selectByPrimaryKey2(String id) {
-        return userMapper.selectByPrimaryKey2(id);
+        return userDao.selectByPrimaryKey2(id);
     }
-
 }

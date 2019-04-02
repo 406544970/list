@@ -46,14 +46,22 @@ public interface UserService {
 //     */
 //    R insertUserAndUserInfo(Map map);
 //
+
     /**
      * 主键查询获得user对象
+     *
      * @param id 用户ID
      * @return User对象
      */
-     List<User> selectByPrimaryKey(String id);
+    List<User> selectByPrimaryKey(String id);
 
-     User selectByPrimaryKey2(String id);
+    /**
+     * 主键查询获得user对象
+     *
+     * @param id 主键
+     * @return 根据ID，得到一个用户实体对象
+     */
+    User selectByPrimaryKey2(String id);
 
 //
 //    /**

@@ -9,9 +9,21 @@ import java.io.Serializable;
  * @editLog
  */
 public class User implements Serializable {
+    /**
+     * 主键
+     */
     private String id;
+    /**
+     * 姓名
+     */
     private String userName;
+    /**
+     * 年龄
+     */
     private Integer age;
+    /**
+     * 性别
+     */
     private Boolean sex;
 
     public User() {

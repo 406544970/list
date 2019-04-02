@@ -3,15 +3,13 @@ package com.lh.list.controller;
 import com.lh.list.model.SexHaving;
 import com.lh.list.model.User;
 import com.lh.list.service.UserService;
-import com.lh.list.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.*;
 import unit.PageList;
 import unit.SortList;
 
@@ -26,8 +24,11 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping(value = "/users")     // 通过这里配置使下面的映射都在/users下，可去除
-@Api(value = "用户控制类", description = "用户控制类")
+@Api(value = "用户控制层", description = "专用于用户相关业务")
 public class UseController {
+    @Value("${server.port}")
+    String myPort;
+
     @Autowired
     UserService userService;
 
@@ -54,6 +55,7 @@ public class UseController {
 
     /**
      * 根据主键，查询一个User列表对象
+     *
      * @param id 主键
      * @return returnMap返回：一个User列表对象
      */
@@ -67,18 +69,26 @@ public class UseController {
     }
 
     /**
-     * 根据主键，查询一个User对象
+     * 主键查询获得user对象
+     *
      * @param id 主键
-     * @return returnType返回：一个User对象
+     * @param englishSign 是否是英文版
+     * @return 根据ID，得到一个用户实体对象
      */
-    @ApiOperation(value = "根据主键查询User列表对象", notes = "returnType返回：一个User列表对象")
+    @ApiOperation(value = "主键查询获得user对象", notes = "根据ID，得到一个用户实体对象")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键", required = true, dataType = "String")
+            @ApiImplicitParam(name = "id", value = "主键", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "englishSign", value = "是否生成英文", required = true, dataType = "Boolean")
     })
-    @PostMapping("/selectByPrimaryKeyUser2")
-    public User selectByPrimaryKeyUser2(String id) {
+    @PostMapping("/selectByPrimaryKey2")
+    public User selectByPrimaryKey2(@RequestParam(value = "id") String id
+            , @RequestParam(value = "englishSign", defaultValue = "false") Boolean englishSign) {
+
+//      请在这里写逻辑代码
+
         return userService.selectByPrimaryKey2(id);
     }
+
 
     /**
      * @return 返回列表数量
@@ -266,4 +276,11 @@ public class UseController {
         Collection<String> keyCollection = nameMap.keySet();
         return new ArrayList(keyCollection);
     }
+
+    @ApiOperation(value = "查看该站点端口", notes = "以便观察负载均衡")
+    @PostMapping(value = "/myPort")
+    public String myPort(){
+        return "myPort: " + this.myPort;
+    }
+
 }

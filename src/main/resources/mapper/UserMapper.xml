@@ -29,13 +29,20 @@
         </where>
     </select>
 
-    <select id="selectByPrimaryKey2" resultType="com.lh.list.model.User" parameterType="java.lang.String">
+    <!-- 注释：主键查询获得user对象 -->
+    <select id="selectByPrimaryKey2" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
-        <include refid="Base_Column_List2"/>
+        id<!-- 主键 -->
+        ,user_name<!-- 姓名 -->
+        ,age<!-- 年龄 -->
+        ,sex<!-- 性别 -->
         FROM user
         <where>
-            AND id = #{id,jdbcType=VARCHAR}
+            <if test="id != null">
+                AND id = #{id,jdbcType=VARCHAR}
+            </if>
         </where>
+        ORDER BY id
     </select>
 
 </mapper>

@@ -23,5 +23,11 @@ public interface UserMapper {
      */
     List<User> selectByPrimaryKey(@Param("id") String id);
 
+    /**
+     * 主键查询获得user对象
+     *
+     * @param id 主键
+     * @return 根据ID，得到一个用户实体对象
+     */
     User selectByPrimaryKey2(@Param("id") String id);
 }
