@@ -30,4 +30,12 @@ public interface UserMapper {
      * @return 根据ID，得到一个用户实体对象
      */
     User selectByPrimaryKey2(@Param("id") String id);
+
+    /**
+     * 转对象得到UserList
+     *
+     * @param user 转对象得到UserList
+     * @return 根据ID，得到一个用户实体对象
+     */
+    List<User> selectByPrimaryKey3(User user);
 }

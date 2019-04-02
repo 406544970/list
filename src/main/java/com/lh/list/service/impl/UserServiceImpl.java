@@ -40,4 +40,15 @@ public class UserServiceImpl implements UserService {
     public User selectByPrimaryKey2(String id) {
         return userDao.selectByPrimaryKey2(id);
     }
+
+    /**
+     * 转对象得到UserList
+     *
+     * @param user 转对象得到UserList
+     * @return 根据ID，得到一个用户实体对象
+     */
+    @Override
+    public List<User> selectByPrimaryKey3(User user) {
+        return userDao.selectByPrimaryKey3(user);
+    }
 }

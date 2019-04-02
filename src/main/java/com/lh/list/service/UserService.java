@@ -62,7 +62,13 @@ public interface UserService {
      * @return 根据ID，得到一个用户实体对象
      */
     User selectByPrimaryKey2(String id);
-
+    /**
+     * 转对象得到UserList
+     *
+     * @param user 转对象得到UserList
+     * @return 根据ID，得到一个用户实体对象
+     */
+    List<User> selectByPrimaryKey3(User user);
 //
 //    /**
 //     * 获得用户列表

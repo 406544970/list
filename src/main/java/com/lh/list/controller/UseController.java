@@ -89,6 +89,37 @@ public class UseController {
         return userService.selectByPrimaryKey2(id);
     }
 
+    /**
+     * 转对象得到UserList
+     *
+     * @param id       主键
+     * @param userName 姓名
+     * @param age      年龄
+     * @param sex      性别
+     * @return 根据ID，得到一个用户实体对象
+     */
+    @ApiOperation(value = "转对象得到UserList", notes = "根据ID，得到一个用户实体对象")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "userName", value = "姓名", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "age", value = "年龄", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "sex", value = "性别", required = true, dataType = "boolean")
+    })
+    @PostMapping("/selectByPrimaryKey3")
+    public List<User> selectByPrimaryKey3(@RequestParam(value = "id") String id
+            , @RequestParam(value = "userName") String userName
+            , @RequestParam(value = "age") int age
+            , @RequestParam(value = "sex") boolean sex) {
+        User userPara = new User();
+        userPara.setId(id);
+        userPara.setUserName(userName);
+        userPara.setAge(age);
+        userPara.setSex(sex);
+
+//      请在这里写逻辑代码
+
+        return userService.selectByPrimaryKey3(userPara);
+    }
 
     /**
      * @return 返回列表数量

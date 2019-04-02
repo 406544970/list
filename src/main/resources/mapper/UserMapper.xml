@@ -8,6 +8,12 @@
         <result column="age" property="age" jdbcType="INTEGER"/><!-- 年龄 -->
         <result column="sex" property="sex" jdbcType="INTEGER"/><!-- 性别 -->
     </resultMap>
+    <resultMap id="BaseResult1Map" type="com.lh.list.model.User">
+        <id column="id" property="id" jdbcType="VARCHAR"/><!-- 主键 -->
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/><!-- 姓名 -->
+        <result column="age" property="age" jdbcType="INTEGER"/><!-- 年龄 -->
+        <result column="sex" property="sex" jdbcType="BIT"/><!-- 性别 -->
+    </resultMap>
 
     <sql id="Base_Column_List">
     id, user_name, age, sex
@@ -16,6 +22,27 @@
     id, user_name as userName, age, sex
     </sql>
 
+    <!-- 注释：转对象得到UserList -->
+    <select id="selectByPrimaryKey3" resultMap="BaseResult1Map" parameterType="com.lh.list.model.User">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
+        <where>
+            <if test="id != null">
+                AND id like CONCAT(#{id,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="userName != null">
+                AND user_name like CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="age != null">
+                <![CDATA[AND age > #{age,jdbcType=INTEGER}]]>
+            </if>
+            <if test="sex != null">
+                AND sex = #{sex,jdbcType=BIT}
+            </if>
+        </where>
+        ORDER BY id
+    </select>
 
     <!--注释：主键查询User对象-->
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -24,7 +51,7 @@
         FROM user
         <where>
             <if test="id != null">
-                AND id = #{id,jdbcType=VARCHAR}
+                AND id = #{id}
             </if>
         </where>
     </select>
