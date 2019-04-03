@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lh.list.dao.UseOtherMapper">
+    <resultMap id="UseOtherMap" type="com.lh.list.model.UseOther">
+        <id column="id" property="id" jdbcType="VARCHAR"/><!-- 主键 -->
+        <result column="use_height" property="useHeight" jdbcType="INTEGER"/><!-- 身高 -->
+        <result column="remark" property="remark" jdbcType="VARCHAR"/><!-- 备注 -->
+    </resultMap>
+    <!-- 注释：查询ListMain，根据主键 -->
+    <select id="selectUserOtherByAll" resultMap="UseOtherMap" parameterType="com.lh.list.model.UseOther">
+        SELECT
+        id
+        ,use_height
+        ,remark
+        FROM user_other
+        <where>
+            <if test="id != null">
+                AND id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="useHeight != null">
+                AND use_height = #{useHeight,jdbcType=INTEGER}
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>
+

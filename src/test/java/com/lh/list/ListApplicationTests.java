@@ -284,5 +284,8 @@ public class ListApplicationTests {
     public void selectByPrimaryKeyUser3() {
         System.out.println(gson.toJson(useController.selectByPrimaryKey3("i", "name", 11, true)));
     }
-
+    @Test
+    public void selectUserOtherByAll(){
+        System.out.println(gson.toJson(useController.selectUserOtherByAll("id2o",165,null)));
+    }
 }

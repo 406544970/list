@@ -1,7 +1,9 @@
 package com.lh.list.controller;
 
 import com.lh.list.model.SexHaving;
+import com.lh.list.model.UseOther;
 import com.lh.list.model.User;
+import com.lh.list.service.UseOtherService;
 import com.lh.list.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -34,6 +36,9 @@ public class UseController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    UseOtherService useOtherService;
 
     private List<User> userList;
 
@@ -314,4 +319,31 @@ public class UseController {
         return "myPort: " + this.myPort;
     }
 
+    /**
+     * 查询ListMain，根据主键
+     *
+     * @param id        主键
+     * @param useHeight 身高
+     * @param remark    备注
+     * @return 返回一个用户其它信息对象
+     */
+    @ApiOperation(value = "查询ListMain，根据主键", notes = "返回一个用户其它信息对象")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "useHeight", value = "身高", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "remark", value = "备注", required = true, dataType = "String")
+    })
+    @PostMapping("/selectUserOtherByAll")
+    public List<UseOther> selectUserOtherByAll(@RequestParam(value = "id") String id
+            , @RequestParam(value = "useHeight") int useHeight
+            , @RequestParam(value = "remark") String remark) {
+        UseOther useOtherPara = new UseOther();
+        useOtherPara.setId(id);
+        useOtherPara.setUseHeight(useHeight);
+        useOtherPara.setRemark(remark);
+
+//      请在这里写逻辑代码
+
+        return useOtherService.selectUserOtherByAll(useOtherPara);
+    }
 }
