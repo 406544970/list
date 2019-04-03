@@ -2,6 +2,7 @@ package com.lh.list.service.impl;
 
 import com.lh.list.dao.UserMapper;
 import com.lh.list.model.UseAndUseOther;
+import com.lh.list.model.UseAndUseOther2;
 import com.lh.list.model.User;
 import com.lh.list.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UseAndUseOther selectUserAndUserOtherByAll() {
+    public UseAndUseOther2  selectUserAndUserOtherByAll() {
         return userDao.selectUserAndUserOtherByAll();
+    }
+
+    @Override
+    public UseAndUseOther selectUserAndUserOtherByAll2() {
+        return userDao.selectUserAndUserOtherByAll2();
     }
 }

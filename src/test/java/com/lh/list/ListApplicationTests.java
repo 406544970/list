@@ -289,8 +289,18 @@ public class ListApplicationTests {
         System.out.println(gson.toJson(useController.selectUserOtherByAll("o",200,null)));
     }
 
+    /**
+     * 线性方式返回JOIN查询
+     */
     @Test
     public void selectUserAndUserOtherByAll(){
         System.out.println(gson.toJson(useController.selectUserAndUserOtherByAll()));
+    }
+    /**
+     * 对象方式返回JOIN查询
+     */
+    @Test
+    public void selectUserAndUserOtherByAll2(){
+        System.out.println(gson.toJson(useController.selectUserAndUserOtherByAll2()));
     }
 }

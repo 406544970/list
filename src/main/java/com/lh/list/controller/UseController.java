@@ -1,9 +1,6 @@
 package com.lh.list.controller;
 
-import com.lh.list.model.SexHaving;
-import com.lh.list.model.UseAndUseOther;
-import com.lh.list.model.UseOther;
-import com.lh.list.model.User;
+import com.lh.list.model.*;
 import com.lh.list.service.UseOtherService;
 import com.lh.list.service.UserService;
 import io.swagger.annotations.Api;
@@ -349,7 +346,12 @@ public class UseController {
     }
 
     @PostMapping("/selectUserAndUserOtherByAll")
-    public UseAndUseOther selectUserAndUserOtherByAll(){
+    public UseAndUseOther2 selectUserAndUserOtherByAll(){
         return userService.selectUserAndUserOtherByAll();
+    }
+
+    @PostMapping("/selectUserAndUserOtherByAll2")
+    public UseAndUseOther selectUserAndUserOtherByAll2(){
+        return userService.selectUserAndUserOtherByAll2();
     }
 }
