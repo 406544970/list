@@ -1,6 +1,7 @@
 package com.lh.list.controller;
 
 import com.lh.list.model.SexHaving;
+import com.lh.list.model.UseAndUseOther;
 import com.lh.list.model.UseOther;
 import com.lh.list.model.User;
 import com.lh.list.service.UseOtherService;
@@ -345,5 +346,10 @@ public class UseController {
 //      请在这里写逻辑代码
 
         return useOtherService.selectUserOtherByAll(useOtherPara);
+    }
+
+    @PostMapping("/selectUserAndUserOtherByAll")
+    public UseAndUseOther selectUserAndUserOtherByAll(){
+        return userService.selectUserAndUserOtherByAll();
     }
 }

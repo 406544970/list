@@ -21,5 +21,6 @@
                 <![CDATA[AND use_height < #{useHeight,jdbcType=INTEGER}]]>
             </if>
         </where>
-    </select></mapper>
+    </select>
+</mapper>
 
