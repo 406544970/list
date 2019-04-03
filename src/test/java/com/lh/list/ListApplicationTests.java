@@ -286,6 +286,6 @@ public class ListApplicationTests {
     }
     @Test
     public void selectUserOtherByAll(){
-        System.out.println(gson.toJson(useController.selectUserOtherByAll("id2o",165,null)));
+        System.out.println(gson.toJson(useController.selectUserOtherByAll("o",200,null)));
     }
 }

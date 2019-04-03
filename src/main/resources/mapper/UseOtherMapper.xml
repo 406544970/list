@@ -15,15 +15,11 @@
         FROM user_other
         <where>
             <if test="id != null">
-                AND id = #{id,jdbcType=VARCHAR}
+                AND id like CONCAT('%',#{id,jdbcType=VARCHAR},'%')
             </if>
             <if test="useHeight != null">
-                AND use_height = #{useHeight,jdbcType=INTEGER}
-            </if>
-            <if test="remark != null">
-                AND remark = #{remark,jdbcType=VARCHAR}
+                <![CDATA[AND use_height < #{useHeight,jdbcType=INTEGER}]]>
             </if>
         </where>
-    </select>
-</mapper>
+    </select></mapper>
 
