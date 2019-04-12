@@ -14,7 +14,6 @@
         <result column="age" property="age" jdbcType="INTEGER"/><!-- 年龄 -->
         <result column="sex" property="sex" jdbcType="BIT"/><!-- 性别 -->
     </resultMap>
-
     <resultMap id="UseAndUseOtherMap" type="com.lh.list.model.UseAndUseOther2">
         <id column="id" property="id" jdbcType="VARCHAR"/><!-- 主键 -->
         <result column="user_name" property="userName" jdbcType="VARCHAR"/><!-- 姓名 -->
@@ -34,7 +33,6 @@
             <result column="remark" property="remark" jdbcType="VARCHAR"/><!-- 性别 -->
         </association>
     </resultMap>
-
     <resultMap id="UseAndUseOtherMap3" type="com.lh.list.model.UseAndUseOther3">
         <id column="id" property="id" jdbcType="VARCHAR"/><!-- 主键 -->
         <result column="user_name" property="userName" jdbcType="VARCHAR"/><!-- 姓名 -->
@@ -53,6 +51,7 @@
     <sql id="Base_Column_List2">
     id, user_name as userName, age, sex
     </sql>
+
     <select id="selectUserAndUserOtherByAll2" resultMap="UseAndUseOtherMap2">
       SELECT main.id
       ,main.user_name
@@ -65,6 +64,7 @@
       WHERE main.id = 'id2o'
       ORDER BY main.id
     </select>
+
     <select id="selectUserAndUserOtherByAll3" resultMap="UseAndUseOtherMap3">
       SELECT main.id
       ,main.user_name
@@ -90,7 +90,6 @@
       WHERE main.id = 'id2o'
       ORDER BY main.id
     </select>
-
     <!-- 注释：转对象得到UserList -->
     <select id="selectByPrimaryKey3" resultMap="BaseResult1Map" parameterType="com.lh.list.model.User">
         SELECT
@@ -137,7 +136,6 @@
             </if>
         </where>
     </select>
-
     <!-- 注释：主键查询获得user对象 -->
     <select id="selectByPrimaryKey2" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
@@ -153,5 +151,4 @@
         </where>
         ORDER BY id
     </select>
-
 </mapper>

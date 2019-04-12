@@ -114,10 +114,10 @@ public class UseController {
             , @RequestParam(value = "age") int age
             , @RequestParam(value = "sex") boolean sex) {
         User userPara = new User();
-        userPara.setId(id);
-        userPara.setUserName(userName);
-        userPara.setAge(age);
-        userPara.setSex(sex);
+//        userPara.setId(id);
+        userPara.setUserName("userName");
+//        userPara.setAge(age);
+//        userPara.setSex(sex);
 
 //      请在这里写逻辑代码
 
