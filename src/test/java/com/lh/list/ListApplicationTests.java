@@ -1,24 +1,16 @@
 package com.lh.list;
 
 import com.google.gson.Gson;
-import com.lh.list.controller.GradeController;
-import com.lh.list.controller.TeacherController;
-import com.lh.list.controller.UseController;
-import com.lh.list.controller.UserGradeController;
+import com.lh.list.controller.*;
 import com.lh.list.dto.AllUserGrade;
-import com.lh.list.model.Grade;
-import com.lh.list.model.Teacher;
-import com.lh.list.model.User;
-import com.lh.list.model.UserGrade;
+import com.lh.list.model.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
@@ -35,6 +27,9 @@ public class ListApplicationTests {
 
     @Autowired
     UserGradeController userGradeController;
+
+    @Autowired
+    OperateRedisController operateRedisController;
 
     @Autowired
     Gson gson;
@@ -284,23 +279,60 @@ public class ListApplicationTests {
     public void selectByPrimaryKeyUser3() {
         System.out.println(gson.toJson(useController.selectByPrimaryKey3("i", "name", 11, true)));
     }
+
     @Test
-    public void selectUserOtherByAll(){
-        System.out.println(gson.toJson(useController.selectUserOtherByAll("o",200,null)));
+    public void selectUserOtherByAll() {
+        System.out.println(gson.toJson(useController.selectUserOtherByAll("o", 200, null)));
+    }
+
+    @Test
+    public void getOilByList() {
+        final int iniCount = 120;
+        List<String> key = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            key.add("A" + (iniCount + i));
+        }
+        for (Model model : operateRedisController.getOilByList(key)) {
+            System.out.println(String.format("Key:%s,Value:%s;", model.getKey(), model.getValue()));
+        }
+    }
+
+    @Test
+    public void saveHash() {
+        operateRedisController.saveHash();
+    }
+
+    @Test
+    public void getHashValue() {
+        System.out.println(operateRedisController.getHashValue("id1391"));
+    }
+    @Test
+    public void addHash(){
+        System.out.println(new Date());
+        System.out.println(operateRedisController.addHash());
+        System.out.println(new Date());
+    }
+
+    @Test
+    public void getHash() {
+        System.out.println(new Date());
+        System.out.println(gson.toJson(operateRedisController.getHash()));
+        System.out.println(new Date());
     }
 
     /**
      * 线性方式返回JOIN查询
      */
     @Test
-    public void selectUserAndUserOtherByAll(){
+    public void selectUserAndUserOtherByAll() {
         System.out.println(gson.toJson(useController.selectUserAndUserOtherByAll()));
     }
+
     /**
      * 对象方式返回JOIN查询
      */
     @Test
-    public void selectUserAndUserOtherByAll2(){
+    public void selectUserAndUserOtherByAll2() {
         System.out.println(gson.toJson(useController.selectUserAndUserOtherByAll2()));
     }
 }
