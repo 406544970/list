@@ -1,5 +1,7 @@
 package com.lh.list.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.lh.list.model.*;
 import com.lh.list.service.UseOtherService;
 import com.lh.list.service.UserService;
@@ -31,6 +33,9 @@ import java.util.stream.Collectors;
 public class UseController {
     @Value("${server.port}")
     String myPort;
+
+    @Value("${mySetUp.pageSize}")
+    int pageSize;
 
     @Autowired
     UserService userService;
@@ -113,6 +118,8 @@ public class UseController {
             , @RequestParam(value = "userName") String userName
             , @RequestParam(value = "age") int age
             , @RequestParam(value = "sex") boolean sex) {
+        PageHelper.startPage(2, pageSize);
+
         User userPara = new User();
 //        userPara.setId(id);
         userPara.setUserName("userName");
@@ -120,8 +127,18 @@ public class UseController {
 //        userPara.setSex(sex);
 
 //      请在这里写逻辑代码
+        List<User> users = userService.selectByPrimaryKey3(userPara);
+        return users;
+    }
 
-        return userService.selectByPrimaryKey3(userPara);
+    @PostMapping("/selectByPrimaryKey3Page")
+    public PageInfo<User> selectByPrimaryKey3Page(@RequestParam(value = "id") String id
+            , @RequestParam(value = "userName") String userName
+            , @RequestParam(value = "age") int age
+            , @RequestParam(value = "sex") boolean sex){
+        List<User> users = this.selectByPrimaryKey3(id, userName, age, sex);
+        PageInfo<User> pageInfo = new PageInfo(users);
+        return pageInfo;
     }
 
     /**

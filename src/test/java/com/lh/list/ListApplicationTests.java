@@ -278,6 +278,8 @@ public class ListApplicationTests {
     @Test
     public void selectByPrimaryKeyUser3() {
         System.out.println(gson.toJson(useController.selectByPrimaryKey3("i", "name", 11, true)));
+//        System.out.println(gson.toJson(useController.selectByPrimaryKey3Page("i", "name", 11, true)));
+
     }
 
     @Test
