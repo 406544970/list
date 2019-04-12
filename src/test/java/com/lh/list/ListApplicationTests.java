@@ -353,7 +353,7 @@ public class ListApplicationTests {
         List<String> list = new ArrayList<>();
         list.add("id1");
         list.add("id2o");
-//        list.add("id3o");
+        list.add("id3o");
         List<User> users = useController.selectUserByListKey(list);
         System.out.println(gson.toJson(users));
     }

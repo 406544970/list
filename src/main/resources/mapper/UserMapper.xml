@@ -113,15 +113,17 @@
         ORDER BY id
     </select>
 
-    <select id="selectByListKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="selectByListKey" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM user
         <where>
-            AND id IN
-            <foreach item="item" index="index" collection="list" open="(" separator=", " close=")">
-                #{item}
-            </foreach>
+            <if test="list != null">
+                AND id IN
+                <foreach item="item" index="index" collection="list" open="(" separator=", " close=")">
+                    #{item}
+                </foreach>
+            </if>
         </where>
     </select>
     <!--注释：主键查询User对象-->
