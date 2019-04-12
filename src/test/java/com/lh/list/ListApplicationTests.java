@@ -335,4 +335,26 @@ public class ListApplicationTests {
     public void selectUserAndUserOtherByAll2() {
         System.out.println(gson.toJson(useController.selectUserAndUserOtherByAll2()));
     }
+
+    /**
+     * 对象方式返回JOIN查询:一对多
+     */
+    @Test
+    public void selectUserAndUserOtherByAll3() {
+        UseAndUseOther3 useAndUseOther3 = useController.selectUserAndUserOtherByAll3();
+        System.out.println(gson.toJson(useAndUseOther3));
+    }
+
+    /**
+     * 传入参数列表，返回User列表
+     */
+    @Test
+    public void selectUserByListKey(){
+        List<String> list = new ArrayList<>();
+        list.add("id1");
+        list.add("id2o");
+//        list.add("id3o");
+        List<User> users = useController.selectUserByListKey(list);
+        System.out.println(gson.toJson(users));
+    }
 }

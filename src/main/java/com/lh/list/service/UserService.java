@@ -3,6 +3,7 @@ package com.lh.list.service;
 
 import com.lh.list.model.UseAndUseOther;
 import com.lh.list.model.UseAndUseOther2;
+import com.lh.list.model.UseAndUseOther3;
 import com.lh.list.model.User;
 
 import java.util.List;
@@ -81,6 +82,12 @@ public interface UserService {
      * @return 返回对象方式对象
      */
     UseAndUseOther selectUserAndUserOtherByAll2();
+
+    /**
+     * @return 返回一对多
+     */
+    UseAndUseOther3 selectUserAndUserOtherByAll3();
+    List<User> selectByListKey(List<String> list);
 //
 //    /**
 //     * 获得用户列表

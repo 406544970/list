@@ -354,4 +354,15 @@ public class UseController {
     public UseAndUseOther selectUserAndUserOtherByAll2(){
         return userService.selectUserAndUserOtherByAll2();
     }
+
+    @PostMapping("/selectUserAndUserOtherByAll3")
+    public UseAndUseOther3 selectUserAndUserOtherByAll3(){
+        return userService.selectUserAndUserOtherByAll3();
+    }
+
+    @PostMapping("/selectUserByListKey")
+    public List<User> selectUserByListKey(List<String> list){
+        return userService.selectByListKey(list);
+    }
+
 }

@@ -2,6 +2,7 @@ package com.lh.list.dao;
 
 import com.lh.list.model.UseAndUseOther;
 import com.lh.list.model.UseAndUseOther2;
+import com.lh.list.model.UseAndUseOther3;
 import com.lh.list.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -50,4 +51,8 @@ public interface UserMapper {
      * @return返回对象方式对象
      */
     UseAndUseOther selectUserAndUserOtherByAll2();
+
+    UseAndUseOther3 selectUserAndUserOtherByAll3();
+
+    List<User> selectByListKey(List<String> list);
 }
