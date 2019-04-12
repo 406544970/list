@@ -34,9 +34,6 @@ public class UseController {
     @Value("${server.port}")
     String myPort;
 
-    @Value("${mySetUp.pageSize}")
-    int pageSize;
-
     @Autowired
     UserService userService;
 
@@ -111,13 +108,15 @@ public class UseController {
             @ApiImplicitParam(name = "id", value = "主键", required = true, dataType = "String"),
             @ApiImplicitParam(name = "userName", value = "姓名", required = true, dataType = "String"),
             @ApiImplicitParam(name = "age", value = "年龄", required = true, dataType = "int"),
-            @ApiImplicitParam(name = "sex", value = "性别", required = true, dataType = "boolean")
+            @ApiImplicitParam(name = "sex", value = "性别", required = true, dataType = "boolean"),
+            @ApiImplicitParam(name = "pageSize", value = "性别", required = true, dataType = "int")
     })
     @PostMapping("/selectByPrimaryKey3")
     public List<User> selectByPrimaryKey3(@RequestParam(value = "id") String id
             , @RequestParam(value = "userName") String userName
             , @RequestParam(value = "age") int age
-            , @RequestParam(value = "sex") boolean sex) {
+            , @RequestParam(value = "sex") boolean sex
+            , @RequestParam(value = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
         PageHelper.startPage(2, pageSize);
 
         User userPara = new User();
@@ -135,8 +134,8 @@ public class UseController {
     public PageInfo<User> selectByPrimaryKey3Page(@RequestParam(value = "id") String id
             , @RequestParam(value = "userName") String userName
             , @RequestParam(value = "age") int age
-            , @RequestParam(value = "sex") boolean sex){
-        List<User> users = this.selectByPrimaryKey3(id, userName, age, sex);
+            , @RequestParam(value = "sex") boolean sex) {
+        List<User> users = this.selectByPrimaryKey3(id, userName, age, sex,10);
         PageInfo<User> pageInfo = new PageInfo(users);
         return pageInfo;
     }
@@ -363,22 +362,22 @@ public class UseController {
     }
 
     @PostMapping("/selectUserAndUserOtherByAll")
-    public UseAndUseOther2 selectUserAndUserOtherByAll(){
+    public UseAndUseOther2 selectUserAndUserOtherByAll() {
         return userService.selectUserAndUserOtherByAll();
     }
 
     @PostMapping("/selectUserAndUserOtherByAll2")
-    public UseAndUseOther selectUserAndUserOtherByAll2(){
+    public UseAndUseOther selectUserAndUserOtherByAll2() {
         return userService.selectUserAndUserOtherByAll2();
     }
 
     @PostMapping("/selectUserAndUserOtherByAll3")
-    public UseAndUseOther3 selectUserAndUserOtherByAll3(){
+    public UseAndUseOther3 selectUserAndUserOtherByAll3() {
         return userService.selectUserAndUserOtherByAll3();
     }
 
     @PostMapping("/selectUserByListKey")
-    public List<User> selectUserByListKey(List<String> list){
+    public List<User> selectUserByListKey(List<String> list) {
         return userService.selectByListKey(list);
     }
 
