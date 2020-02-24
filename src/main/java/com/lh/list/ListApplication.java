@@ -17,10 +17,17 @@ public class ListApplication {
 //        SpringApplication.run(ListApplication.class, args);
 //        System.out.println("http://localhost:8080/swagger-ui.html");
 
+        Date date = new Date();
+        date.setYear(2020);
+        date.setMonth(2);
+        date.setDate(24);
+        date.setHours(10);
+        date.setMinutes(15);
+        date.setSeconds(30);
 //        得到RFID的CRC码
         CardCRCModel cardCRCModel = new CardCRCModel();
         cardCRCModel.setCardId("AAAAAAAAAAAAAAAASSSSSSSSSSSSSS");
-        cardCRCModel.setEndDays(new Date());
+        cardCRCModel.setEndDays(date);
         final String cardCRC = getCRCCode(cardCRCModel);
         System.out.println("cardCRC:" + cardCRC);
 
@@ -32,7 +39,7 @@ public class ListApplication {
         pictureList.add("AAAAAAAAAAAAYYYYYYYYYYYYYYYYUU");
         FaceCRCModel faceCRCModel = new FaceCRCModel();
         faceCRCModel.setPersonId("personIDpersonIDAAAAAAAAAAAAAAAAA");
-        faceCRCModel.setEndDays(new Date());
+        faceCRCModel.setEndDays(date);
         faceCRCModel.setPictureIdList(pictureList);
         final String faceCRC = getCRCCode(faceCRCModel);
         System.out.println("faceCRC:" + faceCRC);
