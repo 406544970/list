@@ -7,6 +7,7 @@ import java.util.Date;
  */
 public final class CardCRCModel extends AbsCRCModel {
     /**
+     * inf_person_bracelet表中的：cardId字段
      * RFID（手环）卡号
      */
     private String cardId;
@@ -27,16 +28,6 @@ public final class CardCRCModel extends AbsCRCModel {
     @Override
     public void setEndDays(Date endDays) {
         super.setEndDays(endDays);
-    }
-
-    @Override
-    public String getPersonId() {
-        return super.getPersonId();
-    }
-
-    @Override
-    public void setPersonId(String personId) {
-        super.setPersonId(personId);
     }
 
 }

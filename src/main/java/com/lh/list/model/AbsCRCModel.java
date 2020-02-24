@@ -7,21 +7,11 @@ import java.util.Date;
  */
 public abstract class AbsCRCModel {
     /**
-     * 居民ID
-     */
-    private String personId;
-    /**
      * 使用结束日期，不包括当天
+     * 若是RFID卡的使用结束日期，则为：inf_person_bracelet中的:validTime
+     * 若是人脸照的使用结束日期，则为：inf_person_to_room中的:outDate--实际选出日期
      */
     private Date endDays;
-
-    public String getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(String personId) {
-        this.personId = personId;
-    }
 
     public Date getEndDays() {
         return endDays;
